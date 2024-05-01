@@ -8,6 +8,7 @@ const { default: mongoose } = require('mongoose');
 const app = express();
 
 const PORT = 4000;
+// const MONGO_URL="mongodb+srv://money:uygfuk231gj@cluster0.bgqgi3l.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 app.use(cors());
 app.use(express.json());
@@ -17,8 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/transaction', async(req, res) =>{
-    await mongoose.connect('process.env.MONGO_URL_THIS');
-    console.log(MONGO_URL_THIS)
+    await mongoose.connect(process.env.MONGO_URL);
     const {name, description, datetime, price} = req.body;
     const transaction = await Transaction.create({
         name, description, datetime, price
