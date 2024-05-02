@@ -33,4 +33,10 @@ app.get('/api/transactions', async(req, res) => {
     res.json(Transactions);
 })
 
+app.get('/api/transactions', async(req, res) => {
+    await mongoose.connect(process.env.MONGO_URL);
+    const transactions = await Transaction.find();
+    res.json(transactions);
+});
+
 app.listen(PORT);
