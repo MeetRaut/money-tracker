@@ -83,42 +83,20 @@ function App() {
 
 
       <div className='transactions'>
+      {transactions.length > 0 && transactions.map(transaction => (
         <div className='transaction'>
           <div className='left'>
-            <div className='name'>New Samsung TV</div>
-            <div className='description'>It was time for new tv</div>
+            <div className='name'>{transaction.name}</div>
+            <div className='description'>{transaction.description}</div>
           </div>
 
           <div className='right'>
-            <div className='price red'>-$500</div>
-            <div className='datetime'>2022-12-18 15:45</div>
+            <div className={'price ' + (transaction.price<0?'red':'green')}>${transaction.price}</div>
+            <div className='datetime'>{transaction.datetime}</div>
           </div>
         </div>
-
-        <div className='transaction'>
-          <div className='left'>
-            <div className='name'>Salary</div>
-            <div className='description'>It was time for new tv</div>
-          </div>
-
-          <div className='right'>
-            <div className='price green'>+$5000</div>
-            <div className='datetime'>2022-12-18 15:45</div>
-          </div>
-        </div>
-
-
-        <div className='transaction'>
-          <div className='left'>
-            <div className='name'>Phone</div>
-            <div className='description'>It was time for new tv</div>
-          </div>
-
-          <div className='right'>
-            <div className='price red'>-$900</div>
-            <div className='datetime'>2022-12-18 15:45</div>
-          </div>
-        </div>
+      ))}
+        
       </div>
 
     </main>
