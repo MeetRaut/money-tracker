@@ -7,6 +7,17 @@ function App() {
   const [name, setName] = useState('');
   const[datetime, setDateTime] = useState('');
   const [description, setDescription] = useState('');
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() =>{
+    getTransactions().then(setTransactions);
+  }, [])
+
+  async function getTransactions(){
+    const url = process.env.REACT_APP_API_URL + '/transactions';
+    const response = await fetch(url);
+    return await response.json();
+  }
 
   function addNewTransaction(ev){
     ev.preventDefault();
