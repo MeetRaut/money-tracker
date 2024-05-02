@@ -1,6 +1,6 @@
 // App.js
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -20,25 +20,25 @@ function App() {
         name: name.substring(price.length+1), 
         description, 
         datetime,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
       })
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(json => {
-      setName('');
-      setDateTime('');
-      setDescription('');
-      console.log('result', json);
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-    
-  }
+      .then((json) => {
+        setName('');
+        setDateTime('');
+        setDescription('');
+        console.log('result', json);
+      })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  };
+
 
   return (
     <main>
