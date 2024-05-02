@@ -50,10 +50,14 @@ function App() {
       });
   };
 
+  let balance = 0;
+  for(const transaction of transactions){
+    balance += transaction.price;
+  }
 
   return (
     <main>
-      <h1>$400<span>.00</span></h1>
+      <h1>${balance}<span>.00</span></h1>
       <form onSubmit={addNewTransaction}>
         <div className='basic'>
           <input 
